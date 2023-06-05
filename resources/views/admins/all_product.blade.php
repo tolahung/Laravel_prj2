@@ -79,13 +79,13 @@
                             </td>
 
                             <td>
-                                <a href="{{url('/edit-category-product/'.$key->product_id.'/click')}}" class="active" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                <a href="{{url('/edit-product/'.$key->product_id.'/click')}}" class="active" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
 
-                                <a onclick = "return confirm('Are you sure to delete')" href="{{url('/delete-category-product/'.$key->category_id.'/click')}}" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+                                <a onclick = "return confirm('Are you sure to delete')" href="{{url('/delete-product/'.$key->product_id.'/click')}}" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
                             </td>
 
 
-                        </tr>
+                        </tr>s
                     @endforeach
                     </tbody>
                 </table>

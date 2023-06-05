@@ -53,6 +53,24 @@ class ProductController extends Controller
         return \redirect('/all-product');
     }
 
+    public function edit_product(Request $request){
+        $tbl_product= DB::table('tbl_prodduct')->where('prodduct_id', $request->id)->get();
+        return view ('admins/edit_category', ['tbl_category'=>$tbl_product]);
+//        echo $tbl_category;
+    }
+
+    public function save_edit_product(Request $request){
+        DB::table('tbl_category')->where('category_id', $request->id)->update(['category_name'=>$request->edit_category_product_name]);
+        return \redirect('/all-category-product');
+    }
+
+
+    public function delete_product($id){
+        DB::table('tbl_category')->where('category_id',$id)->delete();
+        \Illuminate\Support\Facades\Session::put('mess' ,' Xoa thanh cong');
+        return \redirect('/all-category-product');
+    }
+
 //-------------------------------------XU LY CHI TIET SAN PHAM-------------------------------------------------------------------------
 
     public function detail_product($product_id){

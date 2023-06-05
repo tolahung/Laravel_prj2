@@ -67,7 +67,6 @@
 
                             <td>
                                 <a href="{{url('/edit-brand-product/'.$key->brand_id.'/click')}}" class="active" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-
                                 <a onclick = "return confirm('Are you sure to delete')" href="{{url('/delete-brand-product/'.$key->brand_id.'/click')}}" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
                             </td>
                         </tr>

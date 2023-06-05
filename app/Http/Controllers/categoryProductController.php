@@ -58,7 +58,7 @@ class categoryProductController extends Controller
 
 
     public function delete_category_product($id){
-         DB::table('tbl_category')->delete($id);
+         DB::table('tbl_category')->where('category_id',$id)->delete();
          \Illuminate\Support\Facades\Session::put('mess' ,' Xoa thanh cong');
          return \redirect('/all-category-product');
     }

@@ -23,7 +23,7 @@ class brandController extends Controller
 
         DB::table('tbl_brand')->insert($data);
         \Illuminate\Support\Facades\Session::put('message', 'Them thanh cong');
-        return redirect('/add-category-product');
+        return redirect('/all-brand-product');
     }
 
     public function all_brand_product(){
@@ -57,7 +57,7 @@ class brandController extends Controller
 
 
     public function delete_brand_product($id){
-        DB::table('tbl_brand')->delete($id);
+        DB::table('tbl_brand')->where('brand_id',$id)->delete();
         \Illuminate\Support\Facades\Session::put('mess',' Xoa thanh cong');
         return \redirect('/all-brand-product');
     }
