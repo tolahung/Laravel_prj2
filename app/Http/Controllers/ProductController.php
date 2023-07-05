@@ -88,7 +88,7 @@ class ProductController extends Controller
         $relate_product = DB::table('tbl_product')
             ->join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
             ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-            ->where('tbl_category.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
+            ->where('tbl_category.category_id', $category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
         return view('/pages/sanpham/show_detail',['tbl_category'=>$tbl_category])->with('brand', $tbl_brand)->with('detail', $detail_product)->with('relete', $relate_product);
 
 

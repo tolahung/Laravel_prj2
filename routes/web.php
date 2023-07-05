@@ -44,7 +44,7 @@ Route::get('/thuonghieusanpham/{id}/click', [\App\Http\Controllers\brandControll
 Route::get('/chi-tiet-san-pham/{id}/click', [\App\Http\Controllers\ProductController::class, 'detail_product']);
 
 
-//---------------------CATEGORY PRODUCT---------------------------------------
+//-------------------------------------------------CATEGORY PRODUCT---------------------------------------
 //Them danh muc san pham
 Route::get('/add-category-product',[\App\Http\Controllers\categoryProductController::class, 'add_category_product']);
 Route::post('/get-add-category-product',[\App\Http\Controllers\categoryProductController::class, 'save_add_category_product']);

@@ -45,14 +45,17 @@ class brandController extends Controller
     }
 
     public function edit_brand_product(Request $request){
-        $tbl_brand = DB::table('tbl_brand')->where('brand_id', $request->brand_id)->get();
+        $tbl_brand = DB::table('tbl_brand')->where('brand_id', $request->id)->get();
         return view ('admins/edit_brand', ['tbl_brand'=>$tbl_brand]);
-//        echo $tbl_category;
+
     }
 
-    public function save_edit_brand_product(Request $request){
-        DB::table('tbl_brand')->where('brand_id',$request->brand_id)->update(['brand_name'=>$request->edit_brand_product_name]);
-        return \redirect('/all-brand-product');
+    public function save_edit_brand_product(Request $request,$brand_id){
+        $data = array();
+        $data['brand_name'] = $request->brand_name;
+        $data['brand_des'] = $request->brand_des;
+        DB::table('tbl_brand')->where('brand_id',$brand_id)->update($data);
+        return view('admins/add_brand');
     }
 
 
