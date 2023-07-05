@@ -4,11 +4,12 @@
         <div class="col-lg-12">
             <section class="panel">
                 <header class="panel-heading">
-                    Thêm sản phẩm
+                    Câp nhật sản phẩm
                 </header>
                 <div class="panel-body">
                     <div class="position-center">
-                        <form role="form" action="{{url('/get-add-product')}}" method="POST">
+                    @foreach($tbl_product as $key => $edit)
+                        <form role="form" action="{{url('/get-edit-product/'.$edit->product_id.'/click')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên san pham</label>
@@ -21,27 +22,29 @@
                                 ?>
                                 <br>
 
-                                <input type="text" name="product_name" class="form-control" id="exampleInputEmail1" placeholder= "Nhập tên san pham..." >
+                                <input type="text" name="product_name" class="form-control" id="exampleInputEmail1" value="{{$edit->product_name}}" >
                             </div>
 
-                            {{--                            <div class="form-group">--}}
-                            {{--                                <label for="exampleInputEmail1">Hinh anh san pham</label>--}}
-                            {{--                                <input type="file" name="product_image" class="form-control" id="exampleInputEmail1" placeholder= "Nhập tên san pham..." >--}}
-                            {{--                            </div>--}}
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Mô tả san pham</label>
-                                <textarea type="resize: none" rows="5" name="product_des" class="form-control" id="exampleInputPassword1" placeholder="Mô tả san pham"></textarea>
+                                <textarea type="resize: none" rows="5" name="product_des" class="form-control" id="exampleInputPassword1" >{{$edit->product_des}}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Hình ảnh sản phẩm</label>
+{{--                                <img src=""height="100" width="100"  >--}}   tam thoi bo qua doan hien hinh anh
+                                <input type="file" name ="product_image" class ="form-controll" id="exampleInputEmamil">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">giá san pham</label>
-                                <input type="text" name="product_price" class="form-control" id="exampleInputEmail1" placeholder= "Nhập tên san pham..." >
+                                <input type="text" name="product_price" class="form-control" id="exampleInputEmail1" value="{{$edit->product_price}}" >
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Noi dung san pham</label>
-                                <textarea type="resize: none" rows="5" name="product_content" class="form-control" id="exampleInputPassword1" placeholder="Mô tả noi dung san pham"></textarea>
+                                <textarea type="resize: none" rows="5" name="product_content" class="form-control" id="exampleInputPassword1">{{$edit->product_content}}</textarea>
                             </div>
 
                             <div class="form-group">
@@ -71,8 +74,9 @@
                                 </select>
                             </div>
 
-                            <button type="submit" name="add_product" class="btn btn-info">Thêm san pham</button>
+                            <button type="submit" name="add_product" class="btn btn-info">Cập nhật san pham</button>
                         </form>
+                        @endforeach
                     </div>
 
                 </div>

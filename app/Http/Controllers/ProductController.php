@@ -30,45 +30,81 @@ class ProductController extends Controller
         $data['category_id'] = $request->get('category_status');
         $data['brand_id'] = $request->get('brand_status');
 
-        DB::table('tbl_product')->insert($data);
+        $get_image = $request->file('product_image');
+
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.' , $get_name_image));
+            $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/upload_image/product',$new_image);
+            $data['product_image'] = $new_image;
+            DB::table('tbl_products')->insert($data);
+            \Illuminate\Support\Facades\Session::put('message', 'Them thanh cong');
+            return redirect('/add-product');
+        }   $data['product_image'] = '';
+
+        DB::table('tbl_products')->insert($data);
         \Illuminate\Support\Facades\Session::put('message', 'Them thanh cong');
         return redirect('/add-product');
     }
 
 
     public function all_product(){
-        $tbl_product = DB::table('tbl_product')
-            ->join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
-            ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->get();
+        $tbl_product = DB::table('tbl_products')
+            ->join('tbl_category','tbl_category.category_id','=','tbl_products.category_id')
+            ->join('tbl_brand','tbl_brand.brand_id','=','tbl_products.brand_id')->get();
         return view ('admins/all_product', ['tbl_product'=>$tbl_product]);
     }
 
     public function unactive_product($id){
-        DB::table('tbl_product')->where('product_id', $id)->update(['product_status'=>1]);
+        DB::table('tbl_products')->where('product_id', $id)->update(['product_status'=>1]);
         return \redirect('/all-product');
         }
 
     public function active_product($id){
-        DB::table('tbl_product')->where('product_id', $id)->update(['product_status'=>0]);
+        DB::table('tbl_products')->where('product_id', $id)->update(['product_status'=>0]);
         return \redirect('/all-product');
     }
 
-    public function edit_product(Request $request){
-        $tbl_product= DB::table('tbl_prodduct')->where('prodduct_id', $request->id)->get();
-        return view ('admins/edit_category', ['tbl_category'=>$tbl_product]);
+    public function edit_product($product_id){
+        $tbl_category =DB::table('tbl_category')->get();
+        $tbl_brand =DB::table('tbl_brand')->get();
+        $tbl_product= DB::table('tbl_products')->where('product_id', $product_id)->get();
+        return view ('admins/edit_product', ['tbl_product'=>$tbl_product])->with('tbl_category', $tbl_category)->with('tbl_brand', $tbl_brand);
 //        echo $tbl_category;
     }
 
-    public function save_edit_product(Request $request){
-        DB::table('tbl_category')->where('category_id', $request->id)->update(['category_name'=>$request->edit_category_product_name]);
-        return \redirect('/all-category-product');
+    public function save_edit_product(Request $request, $pro_id){
+        $data = array();
+        $data['product_name'] = $request->get('product_name');
+        $data['product_des'] = $request->get('product_des');
+        $data['product_status'] = $request->get('product_status');
+        $data['product_price'] = $request->get('product_price');
+        $data['product_content'] = $request->get('product_content');
+        $data['category_id'] = $request->get('category_status');
+        $data['brand_id'] = $request->get('brand_status');
+        $get_image = $request->file('product_image');
+
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.' , $get_name_image));
+            $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/upload_image/product',$new_image);
+            $data['product_image'] = $new_image;
+            DB::table('tbl_products')->where('product_id',$pro_id)->update($data);
+            \Illuminate\Support\Facades\Session::put('message', 'Cap nhat thanh cong');
+            return redirect('/all-product');
+        }
+        DB::table('tbl_products')->where('product_id',$pro_id)->update($data);
+        \Illuminate\Support\Facades\Session::put('message', 'Them thanh cong');
+        return redirect('/all-product');
     }
 
 
     public function delete_product($id){
-        DB::table('tbl_category')->where('category_id',$id)->delete();
+        DB::table('tbl_products')->where('product_id',$id)->delete();
         \Illuminate\Support\Facades\Session::put('mess' ,' Xoa thanh cong');
-        return \redirect('/all-category-product');
+        return \redirect('/all-product');
     }
 
 //-------------------------------------XU LY CHI TIET SAN PHAM-------------------------------------------------------------------------
@@ -77,18 +113,18 @@ class ProductController extends Controller
         $tbl_category =DB::table('tbl_category')->where('category_status','1')->get();
         $tbl_brand =DB::table('tbl_brand')->where('brand_status','1')->get();
 
-        $detail_product = DB::table('tbl_product')
-            ->join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
-            ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
+        $detail_product = DB::table('tbl_products')
+            ->join('tbl_category','tbl_category.category_id','=','tbl_products.category_id')
+            ->join('tbl_brand','tbl_brand.brand_id','=','tbl_products.brand_id')
             ->where('tbl_product.product_id',$product_id)->get();
             foreach($detail_product as $key => $value) {
                 $category_id = $value->category_id;
             }
 
-        $relate_product = DB::table('tbl_product')
-            ->join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
-            ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-            ->where('tbl_category.category_id', $category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
+        $relate_product = DB::table('tbl_products')
+            ->join('tbl_category','tbl_category.category_id','=','tbl_products.category_id')
+            ->join('tbl_brand','tbl_brand.brand_id','=','tbl_products.brand_id')
+            ->where('tbl_category.category_id', $category_id)->whereNotIn('tbl_products.product_id',[$product_id])->get();
         return view('/pages/sanpham/show_detail',['tbl_category'=>$tbl_category])->with('brand', $tbl_brand)->with('detail', $detail_product)->with('relete', $relate_product);
 
 

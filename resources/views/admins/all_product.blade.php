@@ -42,9 +42,11 @@
                             </label>
                         </th>
                         <th>Tên san pham</th>
+                        <th>Gia</th>
                         <th>Hiển thị</th>
                         <th>Danh muc</th>
                         <th>Thuong hieu</th>
+                        <th>Hinh anh</th>
                         <th style="width:30px;">Xử lý</th>
 
 
@@ -54,7 +56,11 @@
                     @foreach($tbl_product as $key)
                         <tr>
                             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+
                             <td>{{$key->product_name}}</td>
+{{--                            Gia san pham--}}
+                            <td>{{$key->product_price}}</td>
+
                             <td><span class="text-ellipsis">
                               <?php
                                     if($key->product_status==0){
@@ -67,7 +73,8 @@
                                 <?php
                                     }
                                         ?>
-                            </span></td>
+                            </span>
+                            </td>
 
 {{--                            -------Danh muc---------------}}
                             <td>
@@ -79,13 +86,17 @@
                             </td>
 
                             <td>
-                                <a href="{{url('/edit-product/'.$key->product_id.'/click')}}" class="active" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+                                <img src="public/upload_image/product/{{$key->product_image}}" height="100" width="100"  >
+                            </td>
+
+                            <td>
+                                <a href="{{ url('/edit-product/'.$key->product_id.'/click')}}" class="active" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
 
                                 <a onclick = "return confirm('Are you sure to delete')" href="{{url('/delete-product/'.$key->product_id.'/click')}}" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
                             </td>
 
 
-                        </tr>s
+                        </tr>
                     @endforeach
                     </tbody>
                 </table>

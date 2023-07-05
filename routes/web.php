@@ -90,7 +90,7 @@ Route::get('/delete-brand-product/{id}/click',[\App\Http\Controllers\brandContro
 
 
 
-//---------------------PRODUCT---------------------------------------
+//----------------------------------PRODUCT---------------------------------------
 //Them danh muc san pham
 Route::get('/add-product',[\App\Http\Controllers\productController::class, 'add_product']);
 Route::post('/get-add-product',[\App\Http\Controllers\productController::class, 'save_add_product']);

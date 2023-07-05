@@ -8,7 +8,7 @@
                 </header>
                 <div class="panel-body">
                     <div class="position-center">
-                        <form role="form" action="{{url('/get-add-product')}}" method="POST">
+                        <form role="form" action="{{url('/get-add-product')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên san pham</label>
