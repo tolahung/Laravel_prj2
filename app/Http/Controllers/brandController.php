@@ -70,7 +70,7 @@ class brandController extends Controller
     public function show_brand_home($brand_id){
         $tbl_category =DB::table('tbl_category')->where('category_status','1')->get();
         $tbl_brand =DB::table('tbl_brand')->where('brand_status','1')->get();
-        $brand_byid = DB::table('tbl_product')->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->where('tbl_brand.brand_id',$brand_id)->get();
+        $brand_byid = DB::table('tbl_products')->join('tbl_brand','tbl_brand.brand_id','=','tbl_products.brand_id')->where('tbl_brand.brand_id',$brand_id)->get();
         return view('pages/category/show_brand',['tbl_category'=>$tbl_category])->with('brand', $tbl_brand)->with('byid',$brand_byid);
     }
 }

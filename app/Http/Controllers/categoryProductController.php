@@ -74,7 +74,7 @@ class categoryProductController extends Controller
         $tbl_category =DB::table('tbl_category')->where('category_status','1')->get();
         $tbl_brand =DB::table('tbl_brand')->where('brand_status','1')->get();
 //        $cate_name = DB::table('tbl_category')->where('tbl_category.category_id',$category_id)->limit(1)->get();
-        $cate_byid = DB::table('tbl_product')->join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')->where('tbl_category.category_id',$category_id)-> get();
+        $cate_byid = DB::table('tbl_products')->join('tbl_category','tbl_category.category_id','=','tbl_products.category_id')->where('tbl_category.category_id',$category_id)-> get();
          return view('pages/category/show_brand',['tbl_category'=>$tbl_category])->with('brand', $tbl_brand)->with('byid',$cate_byid);
     }
 
