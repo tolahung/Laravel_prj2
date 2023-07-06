@@ -118,3 +118,13 @@ Route::post('/save-cart',[\App\Http\Controllers\cartController::class, 'save_car
 Route::post('/update-cart-quantity',[\App\Http\Controllers\cartController::class, 'update_cart_quantity'] );
 Route::get('/delete-cart/{rowId}/click',[\App\Http\Controllers\cartController::class, 'delete_cart'] );
 
+//---------------------CHECK OUT---------------------------------------
+Route::get('/login-checkout', [\App\Http\Controllers\CheckoutController::class, 'login_checkout']);
+Route::get('/logout-checkout', [\App\Http\Controllers\CheckoutController::class, 'logout_checkout']);
+Route::post('/add-customer', [\App\Http\Controllers\CheckoutController::class, 'add_customer']);
+Route::get('/checkout', [\App\Http\Controllers\CheckoutController::class, 'checkout']);
+Route::post('/save-checkout-customer', [\App\Http\Controllers\CheckoutController::class, 'save_checkout_customer']);
+
+//-------------------------------đăng nhập----------------------------------
+Route::post('/login-customer', [\App\Http\Controllers\CheckoutController::class, 'login_customer']);
+

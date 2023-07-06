@@ -86,10 +86,42 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="{{url('/account')}}"><i class="fa fa-user"></i> Account</a></li>
-                            <li><a href="{{url('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="{{url('/admin-register')}}"><i class="fa fa-lock"></i> Register</a></li>
-                            <li><a href="{{url('/admin-login')}}"><i class="fa fa-lock"></i> Login</a></li>
+{{--                            <li><a href="{{url('/login-checkout')}}"><i class="fa fa-user"></i> Tài khoản</a></li>--}}
+
+
+                            <li><a href="{{url('/show-cart')}}"><i class="fa fa-shopping-cart"></i>Giỏ hàng</a></li>
+
+{{--                          thanh toán--}}
+                            <?php
+                            $customer_id =  \Illuminate\Support\Facades\Session::get('customer_id');
+                            if($customer_id != null){
+                                ?>
+                            <li><a href="{{url('/checkout')}}"><i class="fa fa-shopping-cart"></i>Thanh toán</a></li>
+                                <?php
+                            } else{
+                                ?>
+                            <li><a href="{{url('/login-checkout')}}"><i class="fa fa-shopping-cart"></i>Thanh toán</a></li>
+                                <?php
+                            }
+                            ?>
+
+{{--                            Đăng nhap đăng xuat--}}
+                            <?php
+                               $customer_id =  \Illuminate\Support\Facades\Session::get('customer_id');
+                               if($customer_id != null){
+                            ?>
+                            <li><a href="{{url('/logout-checkout')}}"><i class="fa fa-user"></i> Đăng xuất</a></li>
+                            <?php
+                            } else{
+                            ?>
+                            <li><a href="{{url('/login-checkout')}}"><i class="fa fa-user"></i> Đăng nhập</a></li>
+                            <?php
+                            }
+                               ?>
+
+
+{{--                            <li><a href="{{url('/admin-register')}}"><i class="fa fa-lock"></i> Register</a></li>--}}
+{{--                            <li><a href="{{url('/admin-login')}}"><i class="fa fa-lock"></i> Login</a></li>--}}
                             <?php
                             $name = \Illuminate\Support\Facades\Session::get('name');
                             if($name){
