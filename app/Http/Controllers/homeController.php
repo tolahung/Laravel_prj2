@@ -24,7 +24,14 @@ class homeController extends Controller
 //    {
 //        $this->middleware('is_account');
 //    }
+        public function tim_kiem(Request $request){
+        $keywords = $request->keywords_submit;
+            $tbl_category =DB::table('tbl_category')->where('category_status','1')->get();
+            $tbl_brand =DB::table('tbl_brand')->where('brand_status','1')->get();
+            $search_product = DB::table('tbl_products')->where('product_name','like', '%'.$keywords.'%')->get();
 
+            return view ('pages/sanpham/search',['tbl_category'=>$tbl_category])->with('brand', $tbl_brand)->with('search_product', $search_product);
+        }
 
 
 }

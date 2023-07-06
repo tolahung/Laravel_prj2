@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::get('/home',[\App\Http\Controllers\homeController::class, 'viewHome']);
 Route::get('/account',[\App\Http\Controllers\accountController::class, 'view_account']);
 Route::get('/get-account-logout',[\App\Http\Controllers\accountController::class, 'get_account_logout']);
+Route::post('/tim-kiem',[\App\Http\Controllers\homeController::class, 'tim_kiem']);
 
 //BACK-END
 //Login admin
