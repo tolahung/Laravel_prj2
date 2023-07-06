@@ -87,7 +87,7 @@
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
                             <li><a href="{{url('/account')}}"><i class="fa fa-user"></i> Account</a></li>
-                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="{{url('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             <li><a href="{{url('/admin-register')}}"><i class="fa fa-lock"></i> Register</a></li>
                             <li><a href="{{url('/admin-login')}}"><i class="fa fa-lock"></i> Login</a></li>
                             <?php

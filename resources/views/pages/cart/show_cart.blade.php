@@ -22,15 +22,16 @@
                         <td class="price">Gia</td>
                         <td class="quantity">So luong</td>
                         <td class="total">Tong tien</td>
+                        <td class="total">delete</td>
 
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($content as $v_content)
                     <tr>
-                        <td class="cart_product">
-                            <a href=""><img src="{{asset('/pubhome/images/home/product1.jpg')}}" alt=""></a>
-                        </td>
+{{--                        <td class="cart_product">--}}
+{{--                            <a href=""><img src="{{asset('/pubhome/images/home/product1.jpg')}}" alt=""></a>--}}
+{{--                        </td>--}}
 
                         <td class="cart_description">
                             <h4><a href="">{{$v_content->name}}</a></h4>
@@ -62,6 +63,7 @@
                         </td>
 
                         <td class="cart_delete">
+                            <br>
                             <a class="cart_quantity_delete" href="{{url('/delete-cart/'.$v_content->rowId.'/click')}}"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>

@@ -116,7 +116,7 @@ class ProductController extends Controller
         $detail_product = DB::table('tbl_products')
             ->join('tbl_category','tbl_category.category_id','=','tbl_products.category_id')
             ->join('tbl_brand','tbl_brand.brand_id','=','tbl_products.brand_id')
-            ->where('tbl_product.product_id',$product_id)->get();
+            ->where('tbl_products.product_id',$product_id)->get();
             foreach($detail_product as $key => $value) {
                 $category_id = $value->category_id;
             }

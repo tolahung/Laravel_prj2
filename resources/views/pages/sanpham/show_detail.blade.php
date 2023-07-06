@@ -5,7 +5,7 @@
 <div class="product-details"><!--product-details-->
     <div class="col-sm-5">
         <div class="view-product">
-            <img src="{{asset('pubdetail/images/product-details/1.jpg')}}" alt="" />
+            <img src="{{url('public/upload_image/product/'.$value->product_image)}}"  alt=""/>
             <h3>ZOOM</h3>
         </div>
         <div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -57,7 +57,8 @@
             <p><b>Condition:</b> New</p>
             <p><b>Brand: </b>{{$value->brand_name}}</p>
             <p><b>Category: </b>{{$value->category_name}}</p>
-            <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>
+            <img src="{{url('public/upload_image/product/'.$value->product_image)}}"  class="share img-responsive" alt=""/>
+
         </div><!--/product-information-->
 
     </div>
@@ -123,10 +124,10 @@
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
-                                <img src="{{asset('pubdetail/images/home/recommend1.jpg')}}" alt="" />
-                                <h2>{{$lienquan->product_price}}</h2>
-                                <p>{{$lienquan -> product_name}}</p>
-                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                <img src="{{url('public/upload_image/product/'.$lienquan->product_image)}}"   alt="" />
+                                <h2>{{$lienquan -> product_name}}</h2>
+                                <p>{{$lienquan -> product_price}}</p>
+
                                 <a href="{{url('/chi-tiet-san-pham/'.$lienquan->product_id.'/click')}}">
                                     <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Show detail</button>
                                 </a>
@@ -143,12 +144,14 @@
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
                             <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{asset('pubdetail/images/home/recommend1.jpg')}}" alt="" />
-                                    <h2>{{$lienquan->product_price}}</h2>
-                                    <p>{{$lienquan -> product_name}}</p>
-                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Show detail</button>
+                                <div class                                                                                                                                      ="productinfo text-center">
+                                    <img src="{{url('public/upload_image/product/'.$lienquan->product_image)}}"   alt="" />
+                                    <h2>{{$lienquan -> product_name}}</h2>
+                                    <p>{{$lienquan -> product_price}}</p>
+
+                                    <a href="{{url('/chi-tiet-san-pham/'.$lienquan->product_id.'/click')}}">
+                                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Show detail</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
