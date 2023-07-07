@@ -126,6 +126,9 @@ Route::post('/add-customer', [\App\Http\Controllers\CheckoutController::class, '
 Route::get('/checkout', [\App\Http\Controllers\CheckoutController::class, 'checkout']);
 Route::post('/save-checkout-customer', [\App\Http\Controllers\CheckoutController::class, 'save_checkout_customer']);
 
+Route::get('/payment', [\App\Http\Controllers\CheckoutController::class, 'payment']);
+Route::post('/order-place', [\App\Http\Controllers\CheckoutController::class, 'order_place']);
+
 //-------------------------------đăng nhập----------------------------------
 Route::post('/login-customer', [\App\Http\Controllers\CheckoutController::class, 'login_customer']);
 

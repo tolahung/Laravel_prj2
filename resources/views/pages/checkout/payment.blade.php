@@ -6,46 +6,13 @@
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
-                    <li class="active">Check out</li>
+                    <li class="active">Thanh toán giỏ hàng/li>
                 </ol>
             </div><!--/breadcrums-->
 
-            <div class="register-req">
-                <p>Làm ơn đăng ký hoặc đăng nhập để thanh toán giỏ hàng và xem lại lilchj sử mua hàng</p>
-            </div><!--/register-req-->
 
-            <div class="shopper-informations">
-                <div class="row">
-                    <div class="col-sm-3">
-
-                    </div>
-                    <div class="col-sm-12 clearfix">
-                        <div class="bill-to">
-                            <p>Điền mẫu gửi hàng</p>
-                            <div class="form-one">
-                                <form action="{{url('/save-checkout-customer')}}" method="POST">
-                                @csrf
-                                    <input name="shipping_email" type="text" placeholder="Email">
-                                    <input name="shipping_name" type="text" placeholder="Ho va ten">
-                                    <input name="shipping_phone" type="text" placeholder="Phone">
-                                    <input name="shipping_address" type="text" placeholder="Address">
-                                    <textarea name="shipping_note"  placeholder="Ghi chú đơn hàng của bạn" rows="16"></textarea>
-                                    <input type="submit" value="Gửi" name="send_order" class="btn btn-primary btn-sm">
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-{{--                    <div class="col-sm-4">--}}
-{{--                        <div class="order-message">--}}
-{{--                            <p>Ghi chú gửi hàng</p>--}}
-{{--                            <textarea name="message"  placeholder="Ghi chú đơn hàng của bạn" rows="16"></textarea>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-                </div>
-            </div>
             <div class="review-payment">
-                <h2>Review & Payment</h2>
+                <h2>Xem lại giỏ hàng</h2>
             </div>
 
             <div class="table-responsive cart_info">
@@ -115,6 +82,11 @@
                 </table>
             </div>
 
+            <h4> Chọn hình thức thanh toán </h4>
+            <br> <br>
+
+            <form action="{{url('/order-place')}}" method="POST">
+                @csrf
             <div class="payment-options">
 					<span>
 						<label><input name="payment_option" value="1" type="checkbox">Trả bằng thẻ</label>
@@ -122,8 +94,9 @@
                 <span>
 						<label><input name="payment_option" value="2" type="checkbox"> Nhận tiền mặt</label>
                 </span>
-
+                <input type="submit" value="Đặt hàng" name="send_order" class="btn btn-primary btn-sm">
             </div>
+            </form>
         </div>
     </section> <!--/#cart_items-->
 @endsection
