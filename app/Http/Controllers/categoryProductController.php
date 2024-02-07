@@ -11,14 +11,11 @@ session_start();
 
 class categoryProductController extends Controller
 {
+
     public function add_category_product(){
        return view ('admins/add_category');
     }
 
-    public function all_category_product(){
-        $all_category = DB::table('tbl_category')->get();
-        return view ('admins/all_category', ['tbl_category'=>$all_category]);
-    }
 
     public function save_add_category_product(Request $request){
        $data = array();
@@ -46,16 +43,23 @@ class categoryProductController extends Controller
     }
 
     public function edit_category_product(Request $request){
-        $tbl_category= DB::table('tbl_category')->where('category_id', $request->id)->get();
+        $tbl_category = DB::table('tbl_category')->where('category_id', $request->id)->get();
         return view ('admins/edit_category', ['tbl_category'=>$tbl_category]);
 //        echo $tbl_category;
     }
 
-    public function save_edit_category_product(Request $request){
-           DB::table('tbl_category')->where('category_id', $request->id)->update(['category_name'=>$request->edit_category_product_name]);
-        return \redirect('/all-category-product');
+    public function save_edit_category_product(Request $request,$cate_id){
+           $data = array();
+           $data['category_name'] = $request->category_product_name;
+           $data['category_des'] = $request->category_product_des;
+           DB::table('tbl_category')->where('category_id',$cate_id)->update($data);
+            return view('admins/all_category');
     }
 
+    public function all_category_product(){
+        $tbl_category = DB::table('tbl_category')->get();
+        return view ('admins/all_category')->with('all_category',$tbl_category);
+    }
 
     public function delete_category_product($id){
          DB::table('tbl_category')->where('category_id',$id)->delete();

@@ -47,7 +47,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($tbl_category as $key)
+                    @foreach($all_category as $cate => $key )
                     <tr>
                         <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
                         <td>{{$key->category_name}}</td>
